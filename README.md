@@ -2,9 +2,11 @@ Escuela Colombiana de Ingeniería
 
 Arquitecturas de Software – ARSW
 
-####Taller – programación concurrente, condiciones de carrera y sincronización de hilos. EJERCICIO INDIVIDUAL O EN PAREJAS.
+Autores: Jeisson Steban Casallas Rozo y David Leonardo Piñeros Cortés
 
-#####Parte I – Antes de terminar la clase.
+#### Taller – programación concurrente, condiciones de carrera y sincronización de hilos. EJERCICIO INDIVIDUAL O EN PAREJAS.
+
+##### Parte I – Antes de terminar la clase.
 
 Creación, puesta en marcha y coordinación de hilos.
 
@@ -16,7 +18,7 @@ Creación, puesta en marcha y coordinación de hilos.
 
 
 
-#####Parte II 
+##### Parte II 
 
 
 Para este ejercicio se va a trabajar con un simulador de carreras de galgos (carpeta parte2), cuya representación gráfica corresponde a la siguiente figura:

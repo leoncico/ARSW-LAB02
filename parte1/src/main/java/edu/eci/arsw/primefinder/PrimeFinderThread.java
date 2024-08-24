@@ -19,13 +19,10 @@ public class PrimeFinderThread extends Thread{
 	}
 
 	public void run(){
-		for (int i=a;i<=b;i++){						
-			
-			
-			
+		for (int i=a;i<=b;i++){
 			if (isPrime(i)){
 				primes.add(i);
-				System.out.println(i);
+				//System.out.println(i);
 			}
 		}
 	}

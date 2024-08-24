@@ -16,15 +16,30 @@ public class PrimeFinderThread extends Thread{
 		super();
 		this.a = a;
 		this.b = b;
+		flag = true;
 	}
 
+	@Override
 	public void run(){
-		for (int i=a;i<=b;i++){
-			if (isPrime(i)){
-				primes.add(i);
-				//System.out.println(i);
+		
+			for (int i=a;i<=b;i++){
+				if(flag){
+					if (isPrime(i)){
+						primes.add(i);
+						System.out.println(i);
+					}
+				}
+
+				else{
+					synchronized (primes){
+						try {
+							primes.wait();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
 			}
-		}
 	}
 	
 	boolean isPrime(int n) {
@@ -40,13 +55,11 @@ public class PrimeFinderThread extends Thread{
 		return primes;
 	}
 	
-	
-	public void sleep(){
-		// primes.wait();
-		// Thread.sleep(1000);
-		// taskQueue.add(i);
-		// System.out.println("Produced: " + i);
-		// taskQueue.notifyAll();
+	public void setFlag(boolean value){
+		synchronized(primes){
+			flag = value;
+			primes.notify();
+		}
+		
 	}
-	
 }

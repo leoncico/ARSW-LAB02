@@ -23,35 +23,55 @@ public class Main {
 		pft2.start();
 		pft3.start();
 
-		while (true) {
+		while(true){
 			try {
-				synchronized(primes) {
-					Thread.sleep(5000);
-					
-					Scanner scanner = new Scanner(System.in);
-					System.out.println("Presiona Enter");
-					scanner.nextLine();
-					System.out.println("Programa iniciado xd");
+				Thread.sleep(5000);
+				for(PrimeFinderThread thread : threads){
+					thread.setFlag(false);
+				}
+				Scanner scanner = new Scanner(System.in);
 
+				System.out.println("Presiona Enter");
+				scanner.nextLine();
+				System.out.println("Programa iniciado xd");
 
-					for(PrimeFinderThread thread: threads){
-						thread.wait();
-						
-					}
-
-					
-					for(PrimeFinderThread thread: threads){
-							thread.notify();						
-						}
+				synchronized(primes){
+					for(PrimeFinderThread thread : threads){
+						thread.setFlag(true);
 					}
 				}
 				
-			catch (InterruptedException e) {
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
-			
 		}
+		
+
+		// while (true) {
+		// 	try {
+		// 		Thread.sleep(5000);
+				
+		// 		Scanner scanner = new Scanner(System.in);
+		// 		System.out.println("Presiona Enter");
+		// 		scanner.nextLine();
+		// 		System.out.println("Programa iniciado xd");
+
+
+		// 		for(PrimeFinderThread thread: threads){
+		// 			thread.wait();
+					
+		// 		}
+
+				
+		// 		for(PrimeFinderThread thread: threads){
+		// 				thread.notify();						
+		// 			}
+		// 		}
+				
+		// 	catch (InterruptedException e) {
+		// 		e.printStackTrace();
+		// 	}		
+		// }
 		
 	}
 }

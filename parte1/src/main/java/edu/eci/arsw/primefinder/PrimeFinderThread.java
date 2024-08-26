@@ -26,7 +26,7 @@ public class PrimeFinderThread extends Thread{
 				if(flag){
 					if (isPrime(i)){
 						primes.add(i);
-						System.out.println(i);
+						//System.out.println(i);
 					}
 				}
 
@@ -52,7 +52,10 @@ public class PrimeFinderThread extends Thread{
 	}
 
 	public List<Integer> getPrimes() {
-		return primes;
+		synchronized(primes) {
+			return primes;
+		}
+		
 	}
 	
 	public void setFlag(boolean value){

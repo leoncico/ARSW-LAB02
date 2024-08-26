@@ -19,59 +19,56 @@ public class Main {
 		threads.add(pft2);
 		threads.add(pft3);
 
+		boolean finish = false;
+
 		pft1.start();
 		pft2.start();
 		pft3.start();
 
-		while(true){
+		while(!finish){
 			try {
 				Thread.sleep(5000);
-				for(PrimeFinderThread thread : threads){
-					thread.setFlag(false);
-				}
-				Scanner scanner = new Scanner(System.in);
-
-				System.out.println("Presiona Enter");
-				scanner.nextLine();
-				System.out.println("Programa iniciado xd");
-
-				synchronized(primes){
-					for(PrimeFinderThread thread : threads){
-						thread.setFlag(true);
-					}
-				}
-				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
+			int result = 0;
+			for(PrimeFinderThread thread : threads){
+				result += thread.getPrimes().size();
+				thread.setFlag(false);
+			}
+			System.out.println("Primos encontrados: " + result);
+
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("Presiona Enter");
+			scanner.nextLine();
+			finish = true;
+			synchronized(primes){
+				for(PrimeFinderThread thread : threads){
+					if(thread.isAlive()){
+						finish = false;
+					}
+				}
+			}
+
+			synchronized(primes){
+				for(PrimeFinderThread thread : threads){
+					thread.setFlag(true);
+				}
+			}
+
+			if(finish){
+				System.out.println("Busqueda finalizada");
+			}
+			else{
+				System.out.println("Continuando busqueda ...");
+			}
 		}
-		
 
-		// while (true) {
-		// 	try {
-		// 		Thread.sleep(5000);
-				
-		// 		Scanner scanner = new Scanner(System.in);
-		// 		System.out.println("Presiona Enter");
-		// 		scanner.nextLine();
-		// 		System.out.println("Programa iniciado xd");
-
-
-		// 		for(PrimeFinderThread thread: threads){
-		// 			thread.wait();
-					
-		// 		}
-
-				
-		// 		for(PrimeFinderThread thread: threads){
-		// 				thread.notify();						
-		// 			}
-		// 		}
-				
-		// 	catch (InterruptedException e) {
-		// 		e.printStackTrace();
-		// 	}		
-		// }
-		
+		int finalResult = 0;
+		for(PrimeFinderThread thread : threads){
+			finalResult += thread.getPrimes().size();
+		}
+		System.out.println("Resultado final: " + finalResult);
 	}
 }

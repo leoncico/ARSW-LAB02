@@ -11,9 +11,9 @@ public class Main {
 		List<Integer> primes = new LinkedList<Integer>();
 		ArrayList<PrimeFinderThread> threads = new ArrayList<PrimeFinderThread>();
 
-		PrimeFinderThread pft1=new PrimeFinderThread(0, 100000000);
-		PrimeFinderThread pft2=new PrimeFinderThread(100000000, 200000000);
-		PrimeFinderThread pft3=new PrimeFinderThread(200000000, 300000000);
+		PrimeFinderThread pft1=new PrimeFinderThread(0, 10000000);
+		PrimeFinderThread pft2=new PrimeFinderThread(10000000, 20000000);
+		PrimeFinderThread pft3=new PrimeFinderThread(20000000, 30000000);
 		
 		threads.add(pft1);
 		threads.add(pft2);

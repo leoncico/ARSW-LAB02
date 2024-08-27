@@ -21,26 +21,27 @@ public class PrimeFinderThread extends Thread{
 
 	@Override
 	public void run(){
-		
-			for (int i=a;i<=b;i++){
-				if(flag){
-					if (isPrime(i)){
-						primes.add(i);
-						//System.out.println(i);
-					}
+		for (int i=a;i<=b;i++){
+			if(flag){
+				if (isPrime(i)){
+					primes.add(i);
+					//System.out.println(i);
 				}
-
-				else{
-					synchronized (primes){
-						try {
-							primes.wait();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+			}
+			else{
+				synchronized (primes){
+					try {
+						primes.wait();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
 				}
 			}
+		}
+			
 	}
+				
+	
 	
 	boolean isPrime(int n) {
 	    if (n%2==0) return false;
@@ -61,8 +62,9 @@ public class PrimeFinderThread extends Thread{
 	public void setFlag(boolean value){
 		synchronized(primes){
 			flag = value;
-			primes.notify();
+			if(value == true){
+				primes.notify();
+			}
 		}
-		
 	}
 }

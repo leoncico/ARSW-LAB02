@@ -2,14 +2,13 @@ package edu.eci.arsw.primefinder;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 public class PrimeFinderThread extends Thread{
 
 	
 	int a,b;
 	boolean flag;
-	
+
 	private List<Integer> primes=new LinkedList<Integer>();
 	
 	public PrimeFinderThread(int a, int b) {
@@ -26,7 +25,8 @@ public class PrimeFinderThread extends Thread{
 				if (isPrime(i)){
 					primes.add(i);
 					
-					System.out.println(i);
+					
+					//System.out.println(i);
 				}
 			}
 			else{

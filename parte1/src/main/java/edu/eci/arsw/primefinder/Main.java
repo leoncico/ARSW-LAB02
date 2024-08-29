@@ -1,14 +1,11 @@
 package edu.eci.arsw.primefinder;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
-		List<Integer> primes = new LinkedList<Integer>();
 		ArrayList<PrimeFinderThread> threads = new ArrayList<PrimeFinderThread>();
 
 		PrimeFinderThread pft1=new PrimeFinderThread(0, 10000000);
@@ -43,12 +40,10 @@ public class Main {
 			System.out.println("Presiona Enter");
 			scanner.nextLine();
 			finish = true;
-			synchronized(primes){
-				for(PrimeFinderThread thread : threads){
+			for(PrimeFinderThread thread : threads){
 					if(thread.isAlive()){
 						finish = false;
 					}
-				}
 			}
 
 			for(PrimeFinderThread thread : threads){

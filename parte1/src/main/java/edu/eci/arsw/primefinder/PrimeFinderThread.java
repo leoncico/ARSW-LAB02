@@ -25,7 +25,8 @@ public class PrimeFinderThread extends Thread{
 			if(flag){
 				if (isPrime(i)){
 					primes.add(i);
-					//System.out.println(i);
+					
+					System.out.println(i);
 				}
 			}
 			else{
